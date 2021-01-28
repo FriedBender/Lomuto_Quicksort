@@ -37,22 +37,44 @@ def Quicksort(array, left, right):
         Quicksort(array, partitionPoint+1, right)
 
 
+#shamelessly stolen from: https://www.geeksforgeeks.org/program-check-array-sorted-not-iterative-recursive/
+#to verify if my algorithm works. Though it does NOT work with large arrays
+def arraySortedOrNot(arr):
+ 
+    # Calculating length
+    n = len(arr)
+ 
+    # Array has one or no element or the
+    # rest are already checked and approved.
+    if n == 1 or n == 0:
+        return True
+ 
+    # Recursion applied till last element
+    return arr[0] <= arr[1] and arraySortedOrNot(arr[1:])
+ 
+
 
 def main():
     #generate a randomized array of random numbers:
     print("\nGenerating array\n")
-    someArray = np.random.randint(low=1 ,high=10000000 , size=np.random.randint(low=1, high=100000))
+    someArray = np.random.randint(low=1 ,high=100000 , size=np.random.randint(low=1, high=1000000))
 
     left = 0
     right = (len(someArray) -1)
 
-    print(someArray)
+    #print(someArray)
 
     Quicksort(someArray, left, right)
 
 
-    print("\nArray is now sorted!\n")
-    print(someArray)
+    #print("\nArray is now sorted!\n")
+    #print(someArray)
+
+    if(arraySortedOrNot(someArray)):
+        print("\nArray Confirmed Sorted\n")
+    else:
+        print("\nArray not Sorted\n")
+
 
 
 
